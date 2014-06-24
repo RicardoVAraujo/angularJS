@@ -1,0 +1,15 @@
+body{font-family:"Share Tech";}
+#buscar{margin-bottom: 20px;margin-top: 20px;font-size: 20px;}
+thead{background-color: #333;color: #fff;font-family:"Share Tech";}
+#adicionar{margin-bottom: 10px;}
+#editar{background-color: #efefef;}
+h2{text-align: center;}
+.ng-table-pager{width: 180px;margin: 0 auto;text-align: center;}
+.ng-table-pager button{font-size: 18px;}
+label{display: block;font-size: 18px;}
+#form-editar{margin-top: 10px;font-size: 18px;width: 400px;margin: 0 auto;}
+#mensagem-status-atualizar{margin-top: 10px;margin-bottom: 10px;}
+#form-cadastrar .ng-invalid{border: solid 2px red;}
+#form-cadastrar .ng-valid{border: solid 2px green;}
+.input-red{border: solid 2px red;}
+.input-green{border: solid 2px green;}

@@ -1,0 +1,28 @@
+<div id="form-editar">
+<form name="udpateForm" novalidate id="form-editar">
+
+<label>Produto</label>
+<input type="text" name="produto" ng-minlength="5" ng-model="produto_editar.tb_produtos_nome" class="form-control" style="width: 200px;" required>
+
+<label>Preço</label>
+<input type="text" name="preco" ng-pattern="/^[0-9]+$/" ng-model="produto_editar.tb_produtos_preco" class="form-control" style="width: 200px;" required>
+
+<label></label>
+<button ng-click="atualizar(produto_editar)" ng-disabled="udpateForm.$invalid" class="btn btn-primary">Atualizar</button>
+
+</form>
+
+<div class="erros">
+	<ul clas="lista-erros">
+	    <li ng-show="udpateForm.produto.$error.required">Campo nome do produto é obrigatório !</li>
+	    <li ng-show="udpateForm.preco.$error.required">Campo preço do produto é obrigatório !</li>
+	    <li ng-show="udpateForm.preco.$error.pattern">Preço pode ter somente números</li>
+	    <li ng-show="udpateForm.produto.$error.minlength">Produto deve ter no minimo 5 caracteres</li>
+	    <li ng-show="udpateForm.produto.$error.maxlength">Produto deve ter no máximo 10 caracteres</li>
+	</ul>
+</div>
+
+<div id="mensagem-status-atualizar" style="display: none;text-align: center;"></div>
+
+<a type="button" class="btn btn-warning" ng-href="/" style="margin-top:10px;">Voltar para lista de produtos</a>
+</div>

@@ -1,0 +1,58 @@
+<div id="busca">
+    <input type="text" id="buscar" class="form-control" placeholder="Busca de produto" ng-model="buscaProdutos">
+</div>
+
+<button ng-click="cadastrar = !cadastrar" class="btn btn-success">Cadastrar</button>
+<br />
+<br />
+
+<div id="adicionar" ng-show="cadastrar">
+<form name="formCadastrar" id="form-cadastrar" class="form-inline" novalidate>
+    <input type="text" name="produto" id="input-nome" ng-change="verificar()" ng-minlength="3" class="form-control" ng-model="produto_cadastrar.tb_produtos_nome" placeholder="Nome do produto" style="width: 200px;" required />
+    <input type="text" class="form-control" id="input-preco" ng-change="verificar()"  ng-pattern="/^[0-9]+$/" name="preco" ng-model="produto_cadastrar.tb_produtos_preco" placeholder="Preco do produto" style="width: 200px;" required />
+    <button ng-click="add()" class="btn btn-success" ng-disabled="formCadastrar.$invalid">Cadastrar Produto</button>
+</form>
+</div>
+
+   <table width="100%" cellspacing="0" ng-table="tableParams" class="table table-hover" style="font-size: 18px;">
+    	<thead>
+    		<tr>
+    			<th>Produto</th>
+    			<th>Preço</th>
+    			<th>Data</th>
+    			<th>Editar</th>
+    			<th>Deletar</th>
+                <th>Atualizar</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+          <tr>
+            <td id="mensagem-status" style="display: none;text-align: center" colspan="6"></td>
+          </tr>
+        <tr ng-show="tr_edit">
+            <td><input type="text" ng-model="produto_editar.tb_produtos_nome"></td>
+            <td><input type="text" ng-model="produto_editar.tb_produtos_preco"></td>
+            <td colspan="3"><button type="" class="btn btn-success" ng-click="atualizar(produto_editar)" id="btn-update" ng-disabled="false">Atualizar</button> <button type="" class="btn btn-danger" ng-click="cancelar()">Cancelar</button></td>
+        </tr>
+            <tr ng-repeat="produto in $data | orderBy: 'tb_produtos_nome'| filter: buscaProdutos">
+    			<td>{{produto.tb_produtos_nome | capitalize}}</td>
+    			<td align="center">{{produto.tb_produtos_preco | currency: "R$ "}}</td>
+    			<td align="center">{{produto.tb_produtos_data | date: "dd/MM/yyyy"}}</td>
+    			<td align="center">
+	    			<a type="button" class="btn btn-primary btn-sm" ng-click="edit(produto)">
+	  					<span class="glyphicon glyphicon-pencil"></span> Editar
+					</a>
+				</td>
+    			<td align="center">
+    				<button type="button" class="btn btn-danger btn-sm" ng-click="deletar(produto)">
+	  				<span class="glyphicon glyphicon-remove-circle"></span> Deletar
+					</button>
+                </td>
+                <td align="center">
+                    <a type="button" class="btn btn-warning btn-sm" ng-href="#/produto/{{produto.id}}">
+                    <span class="glyphicon glyphicon-remove-circle"></span> Atualizar
+                    </a>
+                </td>
+    		</tr>
+    	</tbody>
+    </table>
